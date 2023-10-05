@@ -1,10 +1,12 @@
-import estate from "../../static/estate.json";
-
+import { useCatalogue } from "../../context/CatalogueProvider";
 
 const Catalogue = () => {
+
+    const properties = useCatalogue();
+
     return (
         <>
-            {estate.map((property) => {
+            {properties.map((property) => {
                 return (
                     <div key={property.id}>
                         <h2>{property.title}</h2>
