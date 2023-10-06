@@ -2,9 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import { CatalogueProvider } from './context/CatalogueProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <CatalogueProvider>
+      <App />
+    </CatalogueProvider>
   </React.StrictMode>,
 )
