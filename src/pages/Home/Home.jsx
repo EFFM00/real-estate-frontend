@@ -6,7 +6,7 @@ const Home = () => {
             <H1>Welcome to Dream Homes Realty</H1>
             <Button>
                 <LinkStyle to="/login">
-                    Login
+                    Let's go
                 </LinkStyle>
             </Button>
             <P>By: Elena Fischietto</P>
