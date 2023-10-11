@@ -1,6 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
-const ProtectedLogin = ({auth}) => {
+const ProtectedLogin = () => {
+
+    const {auth} = useAuth();
+
     if(auth) {
         return <Outlet />
     } else {

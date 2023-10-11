@@ -3,16 +3,16 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useAuth } from "./context/AuthProvider";
+// import ProtectedLogin from "./routes/protecteds";
 
 const App = () => {
-
-  const {auth} = useAuth();
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/catalogue" element={<Catalogue/>} />
+        {/* <Route element={<ProtectedLogin/>}> */}
+          <Route path="/catalogue" element={<Catalogue/>} />
+        {/* </Route> */}
         <Route path="/login" element={<Login/>} />
         <Route path="/" element={<Home/>} />
         <Route path="/sign-up" element={<Register/>} />

@@ -55,7 +55,7 @@ const Login = () => {
                     const token = JSON.stringify(res.data.token);
                     localStorage.setItem("token", token);
                     setAuth(true)
-                    navigate("/home");
+                    navigate("/catalogue");
 
                 } else {
                     Swal.fire({
