@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { FormCont, Group } from "./styled";
+import { ButtonLogin, FormCont, Group, H1Login, Input, Label, LoginContainer } from "./styled";
+import { Button } from "../Home/style";
 
 
 const Login = () => {
@@ -80,34 +81,40 @@ const Login = () => {
 
 
     return (
-        <FormCont onSubmit={formik.handleSubmit}>
+        <LoginContainer>
+            <FormCont onSubmit={formik.handleSubmit}>
+                <H1Login>Login to start</H1Login>
 
-            <Group>
-                <label htmlFor="email">Email</label>
-                <input placeholder="Email" type="email" name="email" id="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                />
-                {formik.touched.email && formik.errors.email && (
-                <span style={{ color: "red", marginLeft: "12%" }}>
-                {formik.errors.email}
-                </span>)}
-            </Group>
+                <Group>
+                    <Label htmlFor="email">Email</Label>
+                    <Input placeholder="Email" type="email" name="email" id="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.email && formik.errors.email && (
+                    <span style={{ color: "red", marginLeft: "12%" }}>
+                    {formik.errors.email}
+                    </span>)}
+                </Group>
 
-            <Group>
-                <label htmlFor="password">Password</label>
-                <input placeholder="Password" type="password" name="password" id="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                />
-                {formik.touched.password && formik.errors.password && (
-                <span style={{ color: "red", marginLeft: "12%" }}>
-                {formik.errors.password}
-                </span>)}
-            </Group>
+                <Group>
+                    <Label htmlFor="password">Password</Label>
+                    <Input placeholder="Password" type="password" name="password" id="password"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.password && formik.errors.password && (
+                    <span style={{ color: "red", marginLeft: "12%" }}>
+                    {formik.errors.password}
+                    </span>)}
+                </Group>
+                <Link to="/sign-up">
+                Don't have an account? Register
+                </Link>
+            <ButtonLogin type="submit">{msgBtnm}</ButtonLogin>
+            </FormCont>
 
-        <button type="submit">{msgBtnm}</button>
-        </FormCont>
+        </LoginContainer>
     )
 }
 
