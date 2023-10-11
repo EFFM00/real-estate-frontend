@@ -2,11 +2,10 @@ import { useEffect, useState } from "react"
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../../context/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { ButtonLogin, FormCont, Group, H1Login, Input, Label, LoginContainer } from "./styled";
-import { Button } from "../Home/style";
+import { ButtonLogin, FormCont, Group, H1Login, Input, Label, LoginContainer, LinkTo } from "./styled";
 
 
 const Login = () => {
@@ -108,9 +107,9 @@ const Login = () => {
                     {formik.errors.password}
                     </span>)}
                 </Group>
-                <Link to="/sign-up">
-                Don't have an account? Register
-                </Link>
+                <LinkTo to="/sign-up">
+                    Don't have an account? Register
+                </LinkTo>
             <ButtonLogin type="submit">{msgBtnm}</ButtonLogin>
             </FormCont>
 
