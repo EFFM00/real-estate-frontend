@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedLogin from "./routes/Protecteds";
+import PropDetails from "./pages/PropDetails/PropDetails";
 
 const App = () => {
 
@@ -11,7 +12,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<ProtectedLogin/>}>
-          <Route path="/catalogue" element={<Catalogue/>}/>
+          <Route path="/properties" element={<Catalogue/>}/>
+          <Route path="/properties/:propertyId" render={(props) => <PropDetails {...props} customProp={props.location.state.customProp} />}/>
         </Route>
         <Route path="/login" element={<Login/>} />
         <Route path="/" element={<Home/>} />

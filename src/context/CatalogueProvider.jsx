@@ -1,11 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import estate from "../static/estate.json";
 
 export const CatalogueContext = createContext()
 
 export const CatalogueProvider = ({children}) => {
 
-    const [catalogue, setCatalogue] = useState(estate);
+    const [catalogue, setCatalogue] = useState([]);
 
     console.log(children);
     return <CatalogueContext.Provider value={{catalogue, setCatalogue}}>{children}</CatalogueContext.Provider>
