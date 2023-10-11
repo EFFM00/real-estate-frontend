@@ -13,7 +13,7 @@ const App = () => {
       <Routes>
         <Route element={<ProtectedLogin/>}>
           <Route path="/properties" element={<Catalogue/>}/>
-          <Route path="/properties/:propertyId" render={(props) => <PropDetails {...props} customProp={props.location.state.customProp} />}/>
+          <Route path="/properties/:propertyId" element={<PropDetails />}/>
         </Route>
         <Route path="/login" element={<Login/>} />
         <Route path="/" element={<Home/>} />

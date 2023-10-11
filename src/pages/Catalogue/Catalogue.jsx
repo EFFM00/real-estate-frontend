@@ -11,8 +11,6 @@ const Catalogue = () => {
 
     useEffect(() => {
 
-        console.log("CATALOGUE", catalogue);
-
         if(catalogue.length === 0) {
             const url = "https://api-real-estates.onrender.com/api/properties"
 
@@ -25,7 +23,6 @@ const Catalogue = () => {
             }
             axios.get(url, headers)
             .then(res => {
-                console.log(res.data);
                 setCatalogue(res.data.data)
             })
         }
