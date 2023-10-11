@@ -34,9 +34,6 @@ const PropDetails = () => {
     }, [])
 
 
-    console.log("PROPS", propertyId);
-    console.log("PROPS");
-
     return(
         <h1>{propertyId}</h1>
     )
