@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FormCont, Group } from "./styled";
 
 
 const Login = () => {
@@ -12,10 +13,10 @@ const Login = () => {
     const navigate = useNavigate();
 
     const{setAuth, setIsLogging, isLogging} = useAuth();
+
     const [msgBtnm, setMsgBtn] = useState("Login")
 
     useEffect(() => {
-        console.log("isLogging", isLogging);
         if(isLogging) {
             setMsgBtn("Loading...");
         } else {
@@ -33,7 +34,7 @@ const Login = () => {
             .email("Invalid email")
             .required("Email is required"),
             password: Yup.string()
-            .min(1, "Too short")
+            .min(5, "Password must have a minimum of 5 characters")
             .max(50)
             .required("Password is required")
         }),
@@ -53,12 +54,13 @@ const Login = () => {
                 if(res.status === 200 && res.data.success === 1) {
                     const token = JSON.stringify(res.data.token);
                     localStorage.setItem("token", token);
-                    navigate("/");
+                    setAuth(true)
+                    navigate("/home");
 
                 } else {
                     Swal.fire({
                         title: "Error",
-                        text: res.data.data ?? "Invalid email or password",
+                        text: res.data.data,
                         icon: "error",
                     })
                 }
@@ -77,8 +79,9 @@ const Login = () => {
 
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <fieldset>
+        <FormCont onSubmit={formik.handleSubmit}>
+
+            <Group>
                 <label htmlFor="email">Email</label>
                 <input placeholder="Email" type="email" name="email" id="email"
                 onChange={formik.handleChange}
@@ -88,8 +91,9 @@ const Login = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.email}
                 </span>)}
-            </fieldset>
-            <fieldset>
+            </Group>
+
+            <Group>
                 <label htmlFor="password">Password</label>
                 <input placeholder="Password" type="password" name="password" id="password"
                 onChange={formik.handleChange}
@@ -99,9 +103,10 @@ const Login = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.password}
                 </span>)}
-            </fieldset>
+            </Group>
+
         <button type="submit">{msgBtnm}</button>
-        </form>
+        </FormCont>
     )
 }
 
