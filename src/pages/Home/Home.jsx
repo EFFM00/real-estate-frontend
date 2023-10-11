@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
+import { Button, H1, HomeCont, LinkStyle, P } from "./style";
 
 const Home = () => {
     return (
-        <>
-            <h1>Welcometo own real estate page</h1>
-            <button>
-                <Link to="/login">
+        <HomeCont>
+            <H1>Welcome to Dream Homes Realty</H1>
+            <Button>
+                <LinkStyle to="/login">
                     Login
-                </Link>
-            </button>
-        </>
+                </LinkStyle>
+            </Button>
+            <P>By: Elena Fischietto</P>
+        </HomeCont>
     )
 }
 
