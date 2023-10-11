@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const HomeCont = styled.div`
     width: 100vw;
     height: 100vh;
-    background-image: url('../../../public/builds.jpg');
+    background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1992&q=80');
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
