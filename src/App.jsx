@@ -9,17 +9,19 @@ import PropDetails from "./pages/PropDetails/PropDetails";
 const App = () => {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<ProtectedLogin/>}>
-          <Route path="/properties" element={<Catalogue/>}/>
-          <Route path="/properties/:propertyId" element={<PropDetails />}/>
-        </Route>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/" element={<Home/>} />
-        <Route path="/sign-up" element={<Register/>} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<ProtectedLogin/>}>
+            <Route path="/properties" element={<Catalogue/>}/>
+            <Route path="/properties/:propertyId" element={<PropDetails />}/>
+          </Route>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/sign-up" element={<Register/>} />
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 

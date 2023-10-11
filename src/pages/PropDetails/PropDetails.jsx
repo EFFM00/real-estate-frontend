@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCatalogue } from '../../context/CatalogueProvider';
 import axios from 'axios';
+import FormMessage from '../../components/FormMessage/FormMessage';
 
 const PropDetails = () => {
 
@@ -35,7 +36,10 @@ const PropDetails = () => {
 
 
     return(
-        <h1>{propertyId}</h1>
+        <>
+            <h1>{propertyId}</h1>
+            <FormMessage/>
+        </>
     )
 
 }
