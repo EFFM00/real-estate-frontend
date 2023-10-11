@@ -1,15 +1,15 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
 
-    const [auth, setAuth] = useState()
-    const [logged, setLogged] = useState(false);
+    const token = !!localStorage.getItem("token");
+    const [logged, setLogged] = useState(token);
     const [isLogging, setIsLogging] = useState(false)
 
     return (
-        <AuthContext.Provider value={{auth, setAuth, logged, setLogged, isLogging, setIsLogging}}>
+        <AuthContext.Provider value={{logged, setLogged, isLogging, setIsLogging}}>
             {children}
         </AuthContext.Provider>
     )
