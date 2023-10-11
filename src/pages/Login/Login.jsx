@@ -12,7 +12,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const{setAuth, setIsLogging, isLogging} = useAuth();
+    const{setLogged, setIsLogging, setToken, isLogging} = useAuth();
 
     const [msgBtnm, setMsgBtn] = useState("Login")
 
@@ -54,8 +54,9 @@ const Login = () => {
                 if(res.status === 200 && res.data.success === 1) {
                     const token = JSON.stringify(res.data.token);
                     localStorage.setItem("token", token);
-                    setAuth(true)
-                    navigate("/home");
+                    
+                    setLogged(true)
+                    navigate("/catalogue");
 
                 } else {
                     Swal.fire({
