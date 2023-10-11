@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useCatalogue } from "../../context/CatalogueProvider";
 import axios from "axios";
+import PropItem from "../../components/PropItem/PropItem";
+import { ContainerCat } from "./styled";
+import { Link } from "react-router-dom";
 
 const Catalogue = () => {
 
@@ -8,7 +11,7 @@ const Catalogue = () => {
 
     useEffect(() => {
 
-        if(!catalogue) {
+        if(catalogue.length === 0) {
             const url = "https://api-real-estates.onrender.com/api/properties"
 
             const token = localStorage.getItem("token");
@@ -20,7 +23,6 @@ const Catalogue = () => {
             }
             axios.get(url, headers)
             .then(res => {
-                console.log(res.data);
                 setCatalogue(res.data.data)
             })
         }
@@ -29,19 +31,28 @@ const Catalogue = () => {
 
 
     return (
-        <>
-            {catalogue && catalogue.map((property) => {
+        <ContainerCat>
+            {catalogue?.map((property) => {
                 return (
-                    <div key={property.id}>
-                        <h2>{property.title}</h2>
-                        <img src={property.url_img}/>
-                        <h3>{property.address}</h3>
-                        <p>{property.description}</p>
-                        <p>${property.price}</p>
-                    </div>
+
+
+                    <Link key={property.id} to={{
+                        pathname: `/properties/${property.id}`,
+                        state: { customProp: "someValue" }
+                    }}>
+                        <PropItem 
+                        key={property.id}
+                        title={property.title}
+                        main_image={property.main_image}
+                        address={property.address}
+                        price={property.price}
+                        />
+                    </Link>
+
+
                 );
             })}
-        </>
+        </ContainerCat>
     );
 }
 

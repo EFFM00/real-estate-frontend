@@ -56,7 +56,7 @@ const Login = () => {
                     localStorage.setItem("token", token);
                     
                     setLogged(true)
-                    navigate("/catalogue");
+                    navigate("/properties");
 
                 } else {
                     Swal.fire({
