@@ -8,6 +8,15 @@ export const DetailsCont = styled.div`
 export const GalleryCont = styled.div`
     max-width: 800px;
     margin: 0 auto 2rem auto;
+
+    /* .image-gallery-center img{
+        height: 200px;
+
+        @media (min-width: 768px) {
+            height: 300px;
+            object-fit: cover;
+        }
+    } */
 `
 
 export const Address = styled.h2`

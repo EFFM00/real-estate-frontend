@@ -3,11 +3,15 @@ import axios from "axios";
 import PropItem from "../PropItem/PropItem";
 import { ContainerCat, LinkProd } from "./styled";
 import { useCatalogue } from "../../context/CatalogueProvider";
+import { useAuth } from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import formatNum from "../../utils/formatNum";
 
 const CatalogueComp = () => {
 
     const {catalogue, setCatalogue} = useCatalogue();
-
+    const {setLogged} = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -23,7 +27,16 @@ const CatalogueComp = () => {
             }
             axios.get(url, headers)
             .then(res => {
-                setCatalogue(res.data.data)
+                if(res.data.message === "Invalid token") {
+                    localStorage.removeItem("token");
+                    setLogged(false);
+                    navigate("/")
+                } else {
+                    setCatalogue(res.data.data)
+                }
+
+            }).catch(err => {
+                console.log(err);
             })
         }
 
@@ -43,7 +56,7 @@ const CatalogueComp = () => {
                         title={property.title}
                         main_image={property.main_image}
                         address={property.address}
-                        price={property.price}
+                        price={formatNum(property.price)}
                         />
                     </LinkProd>
 

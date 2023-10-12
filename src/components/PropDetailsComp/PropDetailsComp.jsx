@@ -4,14 +4,18 @@ import Gallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import axios from 'axios';
 import { useCatalogue } from '../../context/CatalogueProvider';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { H1Login } from '../../pages/Login/styled';
+import { useAuth } from '../../context/AuthProvider';
+import formatNum from '../../utils/formatNum';
 
 const PropDetailsComp = () => {
 
     const { propertyId } = useParams();
     const {propsDetails, setPropDetails} = useCatalogue();
+    const {setLogged} = useAuth();
     const [images, setImages] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -27,24 +31,32 @@ const PropDetailsComp = () => {
         
         axios.get(url, headers)
         .then(res => {
-            setPropDetails(res.data.data)
 
-            const arrImg = res.data.data.images.map(img => {
-                return {
-                    original: img.url_image,
-                    thumbnail: img.url_image,
-                }
-            })
+            if(res.data.message === "Invalid token") {
+                localStorage.removeItem("token");
+                setLogged(false);
+                navigate("/")
+            } else {
+                setPropDetails(res.data.data)
 
-            const arrImgFinal = [
-                {
-                    original: res.data.data.main_image,
-                    thumbnail: res.data.data.main_image,
-                },
-                ...arrImg
-            ]
+                const arrImg = res.data.data.images.map(img => {
+                    return {
+                        original: img.url_image,
+                        thumbnail: img.url_image,
+                    }
+                })
+    
+                const arrImgFinal = [
+                    {
+                        original: res.data.data.main_image,
+                        thumbnail: res.data.data.main_image,
+                    },
+                    ...arrImg
+                ]
+    
+                setImages(arrImgFinal);
+            }
 
-            setImages(arrImgFinal);
         }).catch(err => {
             console.log(err);
         })
@@ -63,7 +75,7 @@ const PropDetailsComp = () => {
                 <Address>{propsDetails.address}</Address>
                 <h3>{propsDetails.description}</h3>
                 <h3>
-                    {propsDetails?.operation?.toUpperCase()}: ${propsDetails?.price} {propsDetails?.operation !== "sale" ? "per month" : ""} 
+                    {propsDetails?.operation?.toUpperCase()}: ${formatNum(propsDetails?.price)} {propsDetails?.operation !== "sale" ? "per month" : ""} 
                 </h3>
                 
             

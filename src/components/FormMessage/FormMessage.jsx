@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 
 const FormMessage = () => {
 
-    console.log("ENV", import.meta.env);
     const [isSending, setIsSending] = useState(false)
     const [msgBtn, setMsgBtn] = useState("Send")
 
@@ -50,21 +49,15 @@ const FormMessage = () => {
         }),
         onSubmit: () => {
             
-            // const serviceId =  "service_8856n79";
-            // const templateId = "template_w4ne1sc";
-            // const publicKey =  "xc9ESIxzlvyVSXaiO";
-            
-            const serviceId = import.meta.env.EMAILJS_SERVICE_ID;
-            const templateId = import.meta.env.EMAILJS_TEMPLATE_ID;
-            const publicKey = import.meta.env.EMAILJS_PUBLIC_ID;
-
-            console.log("ENV", import.meta.env);
+            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_ID;
             setIsSending(true)
 
             emailjs.sendForm(serviceId, templateId, refForm.current, publicKey)
             .then(_ => {
                 setIsSending(false)
-
+                formik.resetForm();
                 Swal.fire({
                     title: "Success",
                     text: "Message sent",
@@ -77,7 +70,7 @@ const FormMessage = () => {
                 Swal.fire({
                     title: "Error",
                     text: "An error occurred",
-                    icon: "Error",
+                    icon: "error",
                 })
             })
 
