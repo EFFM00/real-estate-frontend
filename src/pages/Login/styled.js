@@ -24,6 +24,7 @@ export const FormCont = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 30%;
     @media (min-width: 768px) {
         margin-top: 5rem;
     }

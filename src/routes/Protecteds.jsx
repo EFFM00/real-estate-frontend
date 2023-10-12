@@ -4,8 +4,6 @@ import { useAuth } from "../context/AuthProvider";
 const ProtectedLogin = () => {
 
     const {logged} = useAuth();
-    console.log("LOGGED", logged);
-
 
     if(logged) {
         return <Outlet />

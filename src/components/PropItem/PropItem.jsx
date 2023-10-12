@@ -1,4 +1,4 @@
-import { Container, Img } from "./styled";
+import { Address, Container, H3, Img, Price } from "./styled";
 
 const PropItem = ({
     id,
@@ -11,9 +11,9 @@ const PropItem = ({
     return (
         <Container key={id}>
             <Img src={main_image} />
-            <h3>{title}</h3>
-            <h5>{address}</h5>
-            <h5>{price}</h5>
+            <H3>{title}</H3>
+            <Address>{address}</Address>
+            <Price>USD ${price}</Price>
         </Container>
     )
     
