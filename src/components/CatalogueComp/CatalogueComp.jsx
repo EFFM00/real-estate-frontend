@@ -30,7 +30,7 @@ const CatalogueComp = () => {
                 if(res.data.message === "Invalid token") {
                     localStorage.removeItem("token");
                     setLogged(false);
-                    navigate("/")
+                    navigate("/login")
                 } else {
                     setCatalogue(res.data.data)
                 }
