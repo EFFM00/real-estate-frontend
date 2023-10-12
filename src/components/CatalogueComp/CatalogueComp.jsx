@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { useCatalogue } from "../../../context/CatalogueProvider";
-import PropItem from "../../PropItem/PropItem";
+import PropItem from "../PropItem/PropItem";
 import { ContainerCat, LinkProd } from "./styled";
+import { useCatalogue } from "../../context/CatalogueProvider";
 
 const CatalogueComp = () => {
 

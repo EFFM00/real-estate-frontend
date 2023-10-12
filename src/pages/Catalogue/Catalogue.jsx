@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import CatalogueComp from "../../components/CatalogueComp/Catalogue/CatalogueComp";
 import { useAuth } from "../../context/AuthProvider";
-import { ButtonLogout, H1List } from "./styled";
+import { ButtonLogout, H1List } from "../../components/CatalogueComp/styled";
+import CatalogueComp from "../../components/CatalogueComp/CatalogueComp";
 
 const Catalogue = () => {
 
