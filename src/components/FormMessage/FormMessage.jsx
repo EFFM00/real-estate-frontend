@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
-
+import { FormMsg, ContainerFormMsg, H3, TextArea } from "./style";
+import {Group, Label, Input, ButtonLogin} from "../../pages/Login/styled.js"
 const FormMessage = () => {
 
     const refForm = useRef();
@@ -17,22 +18,26 @@ const FormMessage = () => {
     }
 
     return(
-        <form ref={refForm} onSubmit={handleSubmit}>
-            <fieldset>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name..."/>
-            </fieldset>
-            <fieldset>
-                <label htmlFor="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Name..."/>
-            </fieldset>
-            <fieldset>
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="name" placeholder="Name..."/>
-            </fieldset>
-            
-            <button type="submit">Send</button>
-        </form>
+        <ContainerFormMsg>
+            <H3>Send a message to the owner</H3>
+            <FormMsg ref={refForm} onSubmit={handleSubmit}>
+                <Group>
+                    <Label htmlFor="name">Name</Label>
+                    <Input type="text" id="name" name="name" placeholder="Name..."/>
+                </Group>
+                <Group>
+                    <Label htmlFor="email">Email</Label>
+                    <Input type="text" id="email" name="email" placeholder="Email..."/>
+                </Group>
+                <Group>
+                    <Label htmlFor="message">Message</Label>
+                    <TextArea id="message" name="message" placeholder="Message..."/>
+                </Group>
+                
+                <ButtonLogin type="submit">Send</ButtonLogin>
+            </FormMsg>
+        </ContainerFormMsg>
+
     )
 }
 
