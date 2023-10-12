@@ -49,13 +49,13 @@ const FormMessage = () => {
         }),
         onSubmit: () => {
             
-            const serviceId =  "service_8856n79";
-            const templateId = "template_w4ne1sc";
-            const publicKey =  "xc9ESIxzlvyVSXaiO";
+            // const serviceId =  "service_8856n79";
+            // const templateId = "template_w4ne1sc";
+            // const publicKey =  "xc9ESIxzlvyVSXaiO";
             
-            // const serviceId = process.env.EMAILJS_SERVICE_ID ?? "service_8856n79";
-            // const templateId = process.env.EMAILJS_TEMPLATE_ID ?? "template_w4ne1sc";
-            // const publicKey = process.env.EMAILJS_PUBLIC_ID ?? "xc9ESIxzlvyVSXaiO";
+            const serviceId = process.env.EMAILJS_SERVICE_ID;
+            const templateId = process.env.EMAILJS_TEMPLATE_ID;
+            const publicKey = process.env.EMAILJS_PUBLIC_ID;
 
             setIsSending(true)
 
