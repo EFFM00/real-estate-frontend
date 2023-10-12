@@ -60,7 +60,7 @@ const PropDetailsComp = () => {
                     <Gallery key={images.length} items={images} />
                 </GalleryCont>
                 }
-                <h3>{propsDetails.address}</h3>
+                <Address>{propsDetails.address}</Address>
                 <h3>{propsDetails.description}</h3>
                 <h3>
                     {propsDetails?.operation?.toUpperCase()}: ${propsDetails?.price} {propsDetails?.operation !== "sale" ? "per month" : ""} 
