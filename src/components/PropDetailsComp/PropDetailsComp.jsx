@@ -73,9 +73,9 @@ const PropDetailsComp = () => {
         <Address>{propsDetails.address}</Address>
         <h3>{propsDetails.description}</h3>
         <h3>
-          {propsDetails?.operation?.toUpperCase()}: $
+          {propsDetails?.operation?.toUpperCase()}: USD $
           {formatNum(propsDetails?.price)}{" "}
-          {propsDetails?.operation !== "sale" ? "per month" : ""}
+          {propsDetails?.operation !== "sale" ? "Per month" : ""}
         </h3>
       </DetailsCont>
     )
