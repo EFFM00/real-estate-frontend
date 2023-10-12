@@ -97,7 +97,7 @@ const RegisterForm = () => {
 
   return (
     <FormCont onSubmit={formik.handleSubmit}>
-      <H1Login>Sign up to start</H1Login>
+      <H1Login>Register to access our properties</H1Login>
 
       <Group>
         <Label htmlFor="first_name">First name</Label>
@@ -213,6 +213,7 @@ const RegisterForm = () => {
           type="number"
           name="number"
           id="number"
+          min={0}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />

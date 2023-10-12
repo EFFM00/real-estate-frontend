@@ -6,7 +6,7 @@ const Catalogue = () => {
   return (
     <>
       <ButtonLogoutComp />
-      <H1List>Search your next inversion in Argentina</H1List>
+      <H1List>Search for your next investment opportunity in Argentina</H1List>
       <CatalogueComp />
     </>
   );

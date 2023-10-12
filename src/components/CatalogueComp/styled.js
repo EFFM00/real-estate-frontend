@@ -18,6 +18,7 @@ export const H1List = styled.h1`
   font-size: 2rem;
   text-align: center;
   padding: 6rem 0 3rem 0;
+  margin: 0 1rem
 `;
 
 export const ButtonLogout = styled.button`

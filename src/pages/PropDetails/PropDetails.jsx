@@ -7,7 +7,7 @@ import ButtonToBack from "../../components/ButtonToBack/ButtonToBack";
 const PropDetails = () => {
   return (
     <DetailsContainer>
-      <ButtonToBack />
+      <ButtonToBack path={"/properties"}/>
       <ButtonLogoutComp />
       <PropDetailsComp />
       <FormMessage />

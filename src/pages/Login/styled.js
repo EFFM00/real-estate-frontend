@@ -27,7 +27,7 @@ export const FormCont = styled.form`
   width: 80%;
   @media (min-width: 768px) {
     margin-top: 5rem;
-    width: 30%;
+    width: 35%;
   }
 `;
 
@@ -70,6 +70,6 @@ export const Input = styled.input`
 `;
 
 export const LinkTo = styled(Link)`
-  font-size: 0rem;
+  font-size: 1rem;
   text-align: left;
 `;

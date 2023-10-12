@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { ButtonToBackStyle } from "./style";
 import MyIcon from "../../../public/arrow-left-solid.svg";
 
-const ButtonToBack = () => {
+const ButtonToBack = ({path}) => {
   const navigate = useNavigate();
 
   const handleToBack = () => {
-    navigate("/properties");
+    navigate(path);
   };
 
   return (
