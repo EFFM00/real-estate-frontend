@@ -5,6 +5,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import axios from 'axios';
 import { useCatalogue } from '../../context/CatalogueProvider';
 import { useParams } from 'react-router-dom';
+import { H1Login } from '../../pages/Login/styled';
 
 const PropDetailsComp = () => {
 
@@ -54,8 +55,15 @@ const PropDetailsComp = () => {
         propsDetails && 
         <PropsContainer>
             <div>
-                <h1>{propsDetails.title}</h1>
+                <H1Login>{propsDetails.title}</H1Login>
                 {images && <Gallery key={images.length} itemWidth={40} itemHeight={34} items={images} />}
+                <h2>{propsDetails.address}</h2>
+                <h3>{propsDetails.description}</h3>
+                <h3>
+                    {propsDetails.operation.toUpperCase()}: ${propsDetails.price} {propsDetails.operation !== "sale" ? "per month" : ""} 
+                </h3>
+                
+            
             </div>
         </PropsContainer>
     )
