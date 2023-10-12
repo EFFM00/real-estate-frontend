@@ -9,9 +9,11 @@ const FormMessage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const serviceId = "service_8856n79";
-        const templateId = "template_w4ne1sc";
-        const publicKey = "xc9ESIxzlvyVSXaiO";
+        const serviceId = process.env.EMAILJS_SERVICE_ID ?? "service_8856n79";
+        const templateId = process.env.EMAILJS_TEMPLATE_ID ?? "template_w4ne1sc";
+        const publicKey = process.env.EMAILJS_PUBLIC_ID ?? "xc9ESIxzlvyVSXaiO";
+
+        console.log(serviceId, templateId, publicKey);
 
         emailjs.sendForm(serviceId, templateId, refForm.current, publicKey).then(res => console.log(res.text)).catch(err => console.error(err))
 
