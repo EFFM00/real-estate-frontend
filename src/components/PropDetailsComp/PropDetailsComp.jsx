@@ -12,7 +12,6 @@ const PropDetailsComp = () => {
     const {propsDetails, setPropDetails} = useCatalogue();
     const [images, setImages] = useState([])
 
-
     useEffect(() => {
 
         const url = "https://api-real-estates.onrender.com/api/properties/" + propertyId

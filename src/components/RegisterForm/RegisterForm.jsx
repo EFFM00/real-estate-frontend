@@ -36,22 +36,22 @@ const RegisterForm = () => {
         },
         validationSchema: Yup.object({
             
-            first_name: Yup.string("1")
+            first_name: Yup.string()
             .required("Name is required"),
             
-            last_name: Yup.string("2")
+            last_name: Yup.string()
             .required("Last name is required"),
             
-            email: Yup.string("3")
+            email: Yup.string()
             .email("Invalid email")
             .required("Email is required"),
 
-            password: Yup.string("4")
+            password: Yup.string()
             .min(5, "Password must have a minimum of 5 characters")
             .max(50, "Password must have a maximum of 50 characters")
             .required("Password is required"),
 
-            number: Yup.string("5")
+            number: Yup.string()
             .required('A phone number is required'),
 
             gender: Yup.string()

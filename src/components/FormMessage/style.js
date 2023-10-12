@@ -5,7 +5,7 @@ export const FormMsg = styled.form`
     flex-direction: column;
 `
 
-export const ContainerFormMsg = styled.form`
+export const ContainerFormMsg = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
