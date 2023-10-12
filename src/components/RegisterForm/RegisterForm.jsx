@@ -15,6 +15,7 @@ import {
 import { InputRadioGroup } from "./style";
 import { useAuth } from "../../context/AuthProvider";
 import { useEffect, useState } from "react";
+import { Required } from "../Required/Required";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ const RegisterForm = () => {
       <H1Login>Register to access our properties</H1Login>
 
       <Group>
-        <Label htmlFor="first_name">First name</Label>
+        <Label htmlFor="first_name">Name{<Required/>}</Label>
         <Input
           placeholder="First name"
           type="text"
@@ -118,7 +119,7 @@ const RegisterForm = () => {
       </Group>
 
       <Group>
-        <Label htmlFor="last_name">Last name</Label>
+        <Label htmlFor="last_name">Last name{<Required/>}</Label>
         <Input
           placeholder="Last name"
           type="text"
@@ -135,7 +136,7 @@ const RegisterForm = () => {
       </Group>
 
       <Group>
-        <Label>Gender</Label>
+        <Label>Gender{<Required/>}</Label>
 
         <div>
           <InputRadioGroup>
@@ -173,7 +174,7 @@ const RegisterForm = () => {
       </Group>
 
       <Group>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">Email{<Required/>}</Label>
         <Input
           placeholder="Email"
           type="email"
@@ -190,7 +191,7 @@ const RegisterForm = () => {
       </Group>
 
       <Group>
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">Password{<Required/>}</Label>
         <Input
           placeholder="Password"
           type="password"
@@ -207,7 +208,7 @@ const RegisterForm = () => {
       </Group>
 
       <Group>
-        <Label htmlFor="phone">Phone</Label>
+        <Label htmlFor="phone">Phone{<Required/>}</Label>
         <Input
           placeholder="Phone"
           type="number"

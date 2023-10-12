@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import jwtDecode from "jwt-decode";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import { Required } from "../Required/Required";
 
 const FormMessage = () => {
   const [isSending, setIsSending] = useState(false);
@@ -79,7 +80,7 @@ const FormMessage = () => {
       {!msgSent ? (
         <FormMsg ref={refForm} onSubmit={formik.handleSubmit}>
           <Group>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">Name{<Required/>}</Label>
             <Input
               defaultValue={
                 dataUserDecoded.first_name + " " + dataUserDecoded.last_name
@@ -98,7 +99,7 @@ const FormMessage = () => {
             )}
           </Group>
           <Group>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Email{<Required/>}</Label>
             <Input
               defaultValue={dataUserDecoded.email}
               type="text"
@@ -115,7 +116,7 @@ const FormMessage = () => {
             )}
           </Group>
           <Group>
-            <Label htmlFor="message">Message</Label>
+            <Label htmlFor="message">Message{<Required/>}</Label>
             <TextArea
               id="message"
               name="message"
