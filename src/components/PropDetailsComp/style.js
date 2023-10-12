@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DetailsCont = styled.div`
-    margin: 5rem auto 5rem auto;
+    margin: 4rem auto 0rem auto;
     color: gray;
 `
 
