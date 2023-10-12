@@ -11,8 +11,6 @@ const PropDetails = () => {
 
     useEffect(() => {
 
-        console.log("CATALOGUE", propsDetails);
-
         if(Object.keys(propsDetails).length === 0) {
             const url = "https://api-real-estates.onrender.com/api/properties/" + propertyId
 
@@ -25,7 +23,6 @@ const PropDetails = () => {
             }
             axios.get(url, headers)
             .then(res => {
-                console.log(propsDetails);
                 setPropDetails(res.data.data)
             }).catch(err => {
                 console.log(err);

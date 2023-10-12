@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useCatalogue } from "../../../context/CatalogueProvider";
 import PropItem from "../../PropItem/PropItem";
 import { ContainerCat, LinkProd } from "./styled";
@@ -8,6 +7,7 @@ import { ContainerCat, LinkProd } from "./styled";
 const CatalogueComp = () => {
 
     const {catalogue, setCatalogue} = useCatalogue();
+
 
     useEffect(() => {
 
@@ -28,7 +28,6 @@ const CatalogueComp = () => {
         }
 
     }, [])
-
 
     return (
         <ContainerCat>
@@ -51,7 +50,7 @@ const CatalogueComp = () => {
 
                 );
             })}
-        </ContainerCat>
+        </ContainerCat> 
     );
 }
 
