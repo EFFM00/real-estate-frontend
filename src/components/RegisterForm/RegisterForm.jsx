@@ -3,10 +3,27 @@ import * as Yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { ButtonLogin, FormCont, Group, H1Login, Input, Label, LinkTo } from "../../pages/Login/styled";
+import { InputRadioGroup } from "./style";
+import { useAuth } from "../../context/AuthProvider";
+import { useEffect, useState } from "react";
 
 const RegisterForm = () => {
 
     const navigate = useNavigate();
+
+    const [msgBtnm, setMsgBtn] = useState("Login")
+
+    const{setIsLogging, isLogging} = useAuth();
+
+
+    useEffect(() => {
+        if(isLogging) {
+            setMsgBtn("Loading...");
+        } else {
+            setMsgBtn("Sign up");
+        }
+    }, [isLogging]);
 
     const formik = useFormik ({
         initialValues: {
@@ -44,8 +61,7 @@ const RegisterForm = () => {
         }),
 
         onSubmit: async (values) => {
-            console.log("EEEEe");
-
+            setIsLogging(true)
             const url = "https://api-real-estates.onrender.com/api/users";
 
             const headers = {
@@ -56,6 +72,7 @@ const RegisterForm = () => {
 
             axios.post(url, values, headers)
             .then(res => {
+                setIsLogging(false);
                 if(res.status === 200 && res.data.success === 1) {
                     navigate("/login");
                 } else {
@@ -65,11 +82,10 @@ const RegisterForm = () => {
                         icon: "error",
                     })
                 }
-
-                console.log(res);
             })
 
             .catch(err => {
+                setIsLogging(false);
                 Swal.fire({
                     title: "Error",
                     text: err,
@@ -81,11 +97,14 @@ const RegisterForm = () => {
 
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <fieldset>
-                <label htmlFor="first_name">First name</label>
-                <input 
-                placeholder="first_name" 
+        <FormCont onSubmit={formik.handleSubmit}>
+
+            <H1Login>Sign up to start</H1Login>
+
+            <Group>
+                <Label htmlFor="first_name">First name</Label>
+                <Input 
+                placeholder="First name" 
                 type="text" 
                 name="first_name" 
                 id="first_name"
@@ -99,12 +118,12 @@ const RegisterForm = () => {
                 (<span style={{ color: "red", marginLeft: "12%" }}>
                     {formik.errors.first_name}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <fieldset>
-                <label htmlFor="last_name">Last name</label>
-                <input 
-                placeholder="last_name" 
+            <Group>
+                <Label htmlFor="last_name">Last name</Label>
+                <Input 
+                placeholder="Last name" 
                 type="text" 
                 name="last_name" 
                 id="last_name"
@@ -115,41 +134,51 @@ const RegisterForm = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.last_name}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <fieldset>
+            <Group>
 
-                <input 
-                type="radio" 
-                id="F" 
-                name="gender" 
-                value="F"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={formik.values.gender === "F"}
-                />
-                <label htmlFor="F">Female</label>
+                <Label>Gender</Label>
 
-                <input 
-                type="radio" 
-                id="M" 
-                name="gender" 
-                value="M"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={formik.values.gender === "M"}
-                />
-                <label htmlFor="M">Male</label>
+                <div>
+                    <InputRadioGroup>
+                        <input 
+                        type="radio" 
+                        id="F" 
+                        name="gender" 
+                        value="F"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={formik.values.gender === "F"}
+                        />
+                        <Label htmlFor="F">Female</Label>
+                    </InputRadioGroup>
+
+                    <InputRadioGroup>
+                        <input 
+                        type="radio" 
+                        id="M" 
+                        name="gender" 
+                        value="M"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={formik.values.gender === "M"}
+                        />
+                        <Label htmlFor="M">Male</Label>
+                    </InputRadioGroup>
+
+                </div>
+
 
                 {formik.touched.gender && formik.errors.gender && (
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.gender}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <fieldset>
-                <label htmlFor="email">Email</label>
-                <input placeholder="Email" type="email" name="email" id="email"
+            <Group>
+                <Label htmlFor="email">Email</Label>
+                <Input placeholder="Email" type="email" name="email" id="email"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 />
@@ -157,12 +186,12 @@ const RegisterForm = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.email}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <fieldset>
-                <label htmlFor="password">Password</label>
-                <input 
-                placeholder="password" 
+            <Group>
+                <Label htmlFor="password">Password</Label>
+                <Input 
+                placeholder="Password" 
                 type="password" 
                 name="password" 
                 id="password"
@@ -173,12 +202,12 @@ const RegisterForm = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.password}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <fieldset>
-                <label htmlFor="phone">Phone</label>
-                <input 
-                placeholder="phone" 
+            <Group>
+                <Label htmlFor="phone">Phone</Label>
+                <Input 
+                placeholder="Phone" 
                 type="number" 
                 name="number" 
                 id="number" 
@@ -189,11 +218,15 @@ const RegisterForm = () => {
                 <span style={{ color: "red", marginLeft: "12%" }}>
                 {formik.errors.phone}
                 </span>)}
-            </fieldset>
+            </Group>
 
-            <button type="submit">Sign up</button>
+            <LinkTo to="/login">
+                    If you have an acount, login here
+            </LinkTo>
 
-        </form>
+            <ButtonLogin type="submit">{msgBtnm}</ButtonLogin>
+
+        </FormCont>
     )
 }
 

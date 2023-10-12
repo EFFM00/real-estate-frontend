@@ -12,7 +12,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const{setLogged, setIsLogging, setToken, isLogging} = useAuth();
+    const{setLogged, setIsLogging, isLogging} = useAuth();
 
     const [msgBtnm, setMsgBtn] = useState("Login")
 
