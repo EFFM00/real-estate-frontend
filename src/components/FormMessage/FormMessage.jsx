@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const FormMessage = () => {
 
+    console.log("ENV", import.meta.env);
     const [isSending, setIsSending] = useState(false)
     const [msgBtn, setMsgBtn] = useState("Send")
 
@@ -53,11 +54,11 @@ const FormMessage = () => {
             // const templateId = "template_w4ne1sc";
             // const publicKey =  "xc9ESIxzlvyVSXaiO";
             
-            const serviceId = process.env.EMAILJS_SERVICE_ID;
-            const templateId = process.env.EMAILJS_TEMPLATE_ID;
-            const publicKey = process.env.EMAILJS_PUBLIC_ID;
+            const serviceId = import.meta.env.EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.EMAILJS_PUBLIC_ID;
 
-            console.log("ENV", process.env);
+            console.log("ENV", import.meta.env);
             setIsSending(true)
 
             emailjs.sendForm(serviceId, templateId, refForm.current, publicKey)
