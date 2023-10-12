@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
-export const ButtonLogoutStyle = styled.button`
+export const ButtonToBackStyle = styled.button`
   margin-top: 1rem;
-  padding: 0.5rem 3rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1e3a5f;
   border: none;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 50%;
   position: absolute;
-  right: 16px;
+  left: 16px;
   top: 10px;
 
   &:hover {
