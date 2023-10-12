@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { PropsContainer } from './style';
+import { Address, DetailsCont, GalleryCont } from './style';
 import Gallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import axios from 'axios';
@@ -53,19 +53,21 @@ const PropDetailsComp = () => {
 
     return(
         propsDetails && 
-        <PropsContainer>
-            <div>
+            <DetailsCont>
                 <H1Login>{propsDetails.title}</H1Login>
-                {images && <Gallery key={images.length} itemWidth={40} itemHeight={34} items={images} />}
-                <h2>{propsDetails.address}</h2>
+                {images && 
+                <GalleryCont>
+                    <Gallery key={images.length} items={images} />
+                </GalleryCont>
+                }
+                <Address>{propsDetails.address}</Address>
                 <h3>{propsDetails.description}</h3>
                 <h3>
-                    {propsDetails.operation.toUpperCase()}: ${propsDetails.price} {propsDetails.operation !== "sale" ? "per month" : ""} 
+                    {propsDetails?.operation?.toUpperCase()}: ${propsDetails?.price} {propsDetails?.operation !== "sale" ? "per month" : ""} 
                 </h3>
                 
             
-            </div>
-        </PropsContainer>
+            </DetailsCont>
     )
 
 }
