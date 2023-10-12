@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { ButtonLogin, FormCont, Group, H1Login, Input, Label, LoginContainer, LinkTo } from "./styled";
+import ButtonToBack from "../../components/ButtonToBack/ButtonToBack";
 
 
 const Login = () => {
@@ -20,7 +21,7 @@ const Login = () => {
         if(isLogging) {
             setMsgBtn("Loading...");
         } else {
-            setMsgBtn("Login");
+            setMsgBtn("Sign in");
         }
     }, [isLogging]);
 
@@ -81,6 +82,7 @@ const Login = () => {
 
     return (
         <LoginContainer>
+            <ButtonToBack path={"/"}/>
             <FormCont onSubmit={formik.handleSubmit}>
                 <H1Login>Login to start</H1Login>
 
@@ -108,7 +110,7 @@ const Login = () => {
                     </span>)}
                 </Group>
                 <LinkTo to="/sign-up">
-                    Don't have an account? Register
+                    Don't have an account? Register here
                 </LinkTo>
             <ButtonLogin type="submit">{msgBtnm}</ButtonLogin>
             </FormCont>
