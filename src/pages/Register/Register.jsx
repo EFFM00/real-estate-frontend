@@ -1,9 +1,12 @@
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import { LoginContainer } from "../Login/styled";
 
 const Register = () => {
 
     return(
-        <RegisterForm />
+        <LoginContainer>
+            <RegisterForm />
+        </LoginContainer>
     )
 
 }

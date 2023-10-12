@@ -1,59 +1,16 @@
-import { useEffect } from "react";
-import { useCatalogue } from "../../context/CatalogueProvider";
-import axios from "axios";
-import PropItem from "../../components/PropItem/PropItem";
-import { ContainerCat } from "./styled";
-import { Link } from "react-router-dom";
+import { H1List } from "../../components/CatalogueComp/styled";
+import CatalogueComp from "../../components/CatalogueComp/CatalogueComp";
+import ButtonLogoutComp from "../../components/ButtonLogoutComp/ButtonLogoutComp";
 
 const Catalogue = () => {
 
-    const {catalogue, setCatalogue} = useCatalogue();
-
-    useEffect(() => {
-
-        if(catalogue.length === 0) {
-            const url = "https://api-real-estates.onrender.com/api/properties"
-
-            const token = localStorage.getItem("token");
-
-            const headers = {
-                headers: {
-                    "Authorization": "Bearer " + JSON.parse(token)
-                }
-            }
-            axios.get(url, headers)
-            .then(res => {
-                setCatalogue(res.data.data)
-            })
-        }
-
-    }, [])
-
-
-    return (
-        <ContainerCat>
-            {catalogue?.map((property) => {
-                return (
-
-
-                    <Link key={property.id} to={{
-                        pathname: `/properties/${property.id}`,
-                        state: { customProp: "someValue" }
-                    }}>
-                        <PropItem 
-                        key={property.id}
-                        title={property.title}
-                        main_image={property.main_image}
-                        address={property.address}
-                        price={property.price}
-                        />
-                    </Link>
-
-
-                );
-            })}
-        </ContainerCat>
-    );
+    return(
+        <>
+            <ButtonLogoutComp/>
+            <H1List>Search your next inversion in Argentina</H1List>
+            <CatalogueComp />
+        </>
+    )
 }
 
 export default Catalogue

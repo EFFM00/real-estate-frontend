@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
+/* @import './css-reset.css';
+@import 'react-image-gallery/styles/css/image-gallery.css'; */
 
 * {
   padding: 0;
