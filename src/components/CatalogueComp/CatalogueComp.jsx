@@ -8,63 +8,61 @@ import { useNavigate } from "react-router-dom";
 import formatNum from "../../utils/formatNum";
 
 const CatalogueComp = () => {
+  const { catalogue, setCatalogue } = useCatalogue();
+  const { setLogged } = useAuth();
+  const navigate = useNavigate();
 
-    const {catalogue, setCatalogue} = useCatalogue();
-    const {setLogged} = useAuth();
-    const navigate = useNavigate();
+  useEffect(() => {
+    if (catalogue.length === 0) {
+      const url = "https://api-real-estates.onrender.com/api/properties";
 
-    useEffect(() => {
+      const token = localStorage.getItem("token");
 
-        if(catalogue.length === 0) {
-            const url = "https://api-real-estates.onrender.com/api/properties"
+      const headers = {
+        headers: {
+          Authorization: "Bearer " + JSON.parse(token),
+        },
+      };
+      axios
+        .get(url, headers)
+        .then((res) => {
+          if (res.data.message === "Invalid token") {
+            localStorage.removeItem("token");
+            setLogged(false);
+            navigate("/login");
+          } else {
+            setCatalogue(res.data.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
-            const token = localStorage.getItem("token");
+  return (
+    <ContainerCat>
+      {catalogue?.map((property) => {
+        return (
+          <LinkProd
+            key={property.id}
+            to={{
+              pathname: `/properties/${property.id}`,
+              state: { customProp: "someValue" },
+            }}
+          >
+            <PropItem
+              key={property.id}
+              title={property.title}
+              main_image={property.main_image}
+              address={property.address}
+              price={formatNum(property.price)}
+            />
+          </LinkProd>
+        );
+      })}
+    </ContainerCat>
+  );
+};
 
-            const headers = {
-                headers: {
-                    "Authorization": "Bearer " + JSON.parse(token)
-                }
-            }
-            axios.get(url, headers)
-            .then(res => {
-                if(res.data.message === "Invalid token") {
-                    localStorage.removeItem("token");
-                    setLogged(false);
-                    navigate("/login")
-                } else {
-                    setCatalogue(res.data.data)
-                }
-
-            }).catch(err => {
-                console.log(err);
-            })
-        }
-
-    }, [])
-
-    return (
-        <ContainerCat>
-            {catalogue?.map((property) => {
-                return (
-
-                    <LinkProd key={property.id} to={{
-                        pathname: `/properties/${property.id}`,
-                        state: { customProp: "someValue" }
-                    }}>
-                        <PropItem
-                        key={property.id}
-                        title={property.title}
-                        main_image={property.main_image}
-                        address={property.address}
-                        price={formatNum(property.price)}
-                        />
-                    </LinkProd>
-
-
-                );
-            })}
-        </ContainerCat> 
-    );
-}
-
-export default CatalogueComp
+export default CatalogueComp;
