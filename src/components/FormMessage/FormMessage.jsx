@@ -57,6 +57,7 @@ const FormMessage = () => {
             const templateId = process.env.EMAILJS_TEMPLATE_ID;
             const publicKey = process.env.EMAILJS_PUBLIC_ID;
 
+            console.log("ENV", process.env);
             setIsSending(true)
 
             emailjs.sendForm(serviceId, templateId, refForm.current, publicKey)
