@@ -22,3 +22,7 @@ export const TextArea = styled.textarea`
   border: 1px solid #567b9c;
   height: 10rem;
 `;
+export const PMsg = styled.p`
+  color: #1e3a5f;
+  text-align: center;
+`
